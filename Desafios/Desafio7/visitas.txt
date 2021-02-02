@@ -1,1 +1,1 @@
-{"/item-random":8,"/items":2}
+{"visitas":{"item":3,"items":1}}

@@ -7,7 +7,7 @@ const productos = JSON.parse(fs.readFileSync('productos.txt', 'utf-8'));
 ////// Visitas //////
 const path ='visitas.txt'
 const readVisitas = () => {
-    let result = {}
+    let result = {visitas: {item:0, items:0}}
     try {
         result = JSON.parse(fs.readFileSync(path, 'utf-8'))
     } catch (error) {
@@ -27,14 +27,19 @@ app.use((req, res, next) => {
     res.on('finish', () => {
         const stats = readVisitas()
         const event = `${req.originalUrl}`
-        if(event !== '/visitas'){
-            stats[event] = stats[event] ? stats[event] + 1 : 1
+        console.log(stats)
+        switch (event){
+            case '/item-random':
+                stats.visitas.item =  stats.visitas.item ? stats.visitas.item + 1 : 1
+                break
+            case '/items':
+                stats.visitas.items =  stats.visitas.items ? stats.visitas.items + 1 : 1
+                break
         }
         dumpVisitas(stats)
     })
     next()
 })
-
 ///// Cierra Visitas /////
 
 app.get('/items', function(req, res) {
