@@ -3,7 +3,7 @@ import express from 'express'
 
 //Express Initializing
 const app = express();
-const port: number = 8080;
+const port: number = 8000;
 
 app.use(express.json())
 app.use(express.urlencoded( {extended:true } ))
