@@ -1,0 +1,34 @@
+<div class="container">
+    <% if (locals.productos) { %>
+        <div class="row">
+            <h1>Lista de productos</h1>
+            <a href="/productos">Volver al formulario</a>
+        </div>
+        <div class="row justify-content-center">
+            <table class="table-primary">   
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% productos.forEach(function(producto){ %>
+                        <tr>
+                            <td><img height=75px src=<%= producto.thumbnail %> alt=<%= producto.title %> ></td>
+                            <td><%= producto.title %></td>
+                            <td><%= producto.price %></td>
+                        </tr>
+                    <% }); %>
+                    </tbody>
+            </table>
+        </div>
+    <% } else{ %>  
+        <div class="row">
+            <h1>Todavia no tienes productos</h1>
+            <a href="/productos">Volver al formulario</a>
+        </div>
+    <% } %>
+</div>
+

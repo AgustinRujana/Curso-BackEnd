@@ -1,6 +1,5 @@
 //Imports
 import express from 'express'
-import handlebars from 'express-handlebars'
 
 
 //Express Initialization
@@ -10,15 +9,9 @@ const port: number = 8000;
 app.use(express.json())
 app.use(express.urlencoded( {extended:true } ))
 
-//Handlebars Initialization
-app.engine('hbs', handlebars({
-    extname:'.hbs',
-    defaultLayout:'index.hbs',
-    layoutsDir: __dirname + '/views/layouts',
-    partialsDir: __dirname + '/views/partials'
-}))
+//Ejs Initialization
 app.set('views', './src/views')
-app.set('view engine', 'hbs')
+app.set('view engine', 'ejs')
 
 ////Routers
 //Products Main

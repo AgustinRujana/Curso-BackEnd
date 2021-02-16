@@ -1,5 +1,6 @@
 //Imports
 import { productoClass } from '../src/constructor'
+import ejs from 'ejs'
 
 //Express Initializing
 const express = require('express')
@@ -7,6 +8,9 @@ const router = express.Router()
 
 //Variables
 let productos: any[] = []
+
+//Ejs Initialization
+
 
 //Services
 const existanceCheck = (id, req, res) => {   
@@ -32,7 +36,7 @@ router.route('/productos')
 //Products Lista
 router.route('/productos/vista')
     .get((req,res) =>{
-        productos.length > 0 ? res.render("productList", {productos, pageTitle : "Lista de productos", listExists: true}) : res.render("productList", {listExists: false})
+        productos.length > 0 ? res.render(ejs.render('productList.ejs', {productos: productos})) : res.render(ejs.render('productList.ejs', {}))     
     })
 
 // Products :id
