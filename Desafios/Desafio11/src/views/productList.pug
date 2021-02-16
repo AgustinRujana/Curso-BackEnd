@@ -1,0 +1,21 @@
+
+mixin row(title)
+    .row
+        h1= title 
+        a(href='/productos') Volver al formulario
+
+.container
+    if productos
+        +row('Lista de Productos')
+        tr
+            th Image
+            th Description 
+            th Price
+        each producto in productos 
+            tr 
+                td= producto.thumbnail
+                td= producto.title
+                td= producto.price
+    else
+        +row('No tienes Productos')
+

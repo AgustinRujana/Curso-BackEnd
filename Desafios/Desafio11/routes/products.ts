@@ -1,9 +1,13 @@
 //Imports
 import { productoClass } from '../src/constructor'
+import pug from 'pug'
 
 //Express Initializing
 const express = require('express')
 const router = express.Router()
+
+//Pug Initialization
+const compiledList = pug.compileFile('./src/views/productList.pug')
 
 //Variables
 let productos: any[] = []
@@ -32,7 +36,7 @@ router.route('/productos')
 //Products Lista
 router.route('/productos/vista')
     .get((req,res) =>{
-        productos.length > 0 ? res.render("productList", {productos, pageTitle : "Lista de productos", listExists: true}) : res.render("productList", {listExists: false})
+        productos.length > 0 ? res.send(compiledList({productos, pageTitle : "Lista de productos", listExists: true})) : res.send(compiledList({listExists: false}))
     })
 
 // Products :id
